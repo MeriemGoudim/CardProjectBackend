@@ -32,6 +32,16 @@ public class InfosCardController {
     public Optional<InfosCard> getInfosCardById(@PathVariable(required = true) long id) {
         return service.getInfosCardById(id);
     }
+    
+    @GetMapping("/infoscards/cardsclientc/{id}")
+    public List<InfosCard> getInfosCardByClientAndStatutCloture(@PathVariable(required = true) long id) {
+        return service.findByClientAndStatutCloture(id);
+    }
+    
+    @GetMapping("/infoscards/cardscliente/{id}")
+    public List<InfosCard> getInfosCardByClientAndStatutEnCours(@PathVariable(required = true) long id) {
+        return service.findByClientAndStatutEncours(id);
+    }
     @DeleteMapping("/infoscards/{id}")
     public Map<String, Boolean> delete(@PathVariable(required = true) long id) throws Exception {
         service.delete(id);

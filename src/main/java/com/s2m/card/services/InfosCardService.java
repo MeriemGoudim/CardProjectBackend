@@ -1,6 +1,7 @@
 package com.s2m.card.services;
 
 import com.s2m.card.exception.ResourceNotFoundException;
+import com.s2m.card.models.Client;
 import com.s2m.card.models.InfosCard;
 import com.s2m.card.repositories.InfosCardRepository;
 
@@ -27,6 +28,15 @@ public class InfosCardService {
     public Optional<InfosCard> getInfosCardById(long id){
         return repository.findById(id);
     }
+    
+    public List<InfosCard> findByClientAndStatutEncours(Long id){
+        return repository.findByClientAndStatutEncours(id);
+    }
+    
+    public List<InfosCard> findByClientAndStatutCloture(Long id){
+        return repository.findByClientAndStatutCloture(id);
+    }
+    
     public void delete(Long id) throws ResourceNotFoundException {
     	InfosCard infosCard=repository.findById(id)
     			.orElseThrow(() -> new ResourceNotFoundException("InfosCard not found for this id :: " + id));
