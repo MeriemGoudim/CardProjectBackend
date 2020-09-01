@@ -3,6 +3,12 @@ package com.s2m.card.payload.request;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 public class SignupRequest {
@@ -15,7 +21,7 @@ public class SignupRequest {
     @Email
     private String email;
 
-    private Set<String> role;
+    private ArrayList<String> role;
 
     @NotBlank
     @Size(min = 6, max = 40)
@@ -45,11 +51,11 @@ public class SignupRequest {
         this.password = password;
     }
 
-    public Set<String> getRole() {
+    public ArrayList<String> getRole() {
         return this.role;
     }
 
-    public void setRole(Set<String> role) {
+    public void setRole(ArrayList<String> role) {
         this.role = role;
     }
 }

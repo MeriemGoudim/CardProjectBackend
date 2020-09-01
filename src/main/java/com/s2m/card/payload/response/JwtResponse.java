@@ -2,6 +2,8 @@ package com.s2m.card.payload.response;
 
 import java.util.List;
 
+import com.s2m.card.models.Client;
+
 public class JwtResponse {
     private String token;
     private String type = "Bearer";
@@ -9,13 +11,15 @@ public class JwtResponse {
     private String username;
     private String email;
     private List<String> roles;
+    private Client client;
 
-    public JwtResponse(String accessToken, Long id, String username, String email, List<String> roles) {
+    public JwtResponse(String accessToken, Long id, String username, String email, List<String> roles, Client client) {
         this.token = accessToken;
         this.id = id;
         this.username = username;
         this.email = email;
         this.roles = roles;
+        this.client = client;
     }
 
     public String getAccessToken() {
@@ -61,4 +65,14 @@ public class JwtResponse {
     public List<String> getRoles() {
         return roles;
     }
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+    
+    
 }

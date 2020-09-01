@@ -29,20 +29,8 @@ public class Notification implements Serializable{
     @JoinColumn(name = "idUser")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "idProfile")
-    private Profile profile;
-
     public Notification() {
         super();
-    }
-
-    public Notification(String message, Boolean confirmation, Boolean argument, User user, Profile profile) {
-        this.message = message;
-        this.confirmation = confirmation;
-        this.argument = argument;
-        this.user = user;
-        this.profile = profile;
     }
 
     public Notification(String message, Boolean confirmation, Boolean argument, User user) {
@@ -92,14 +80,6 @@ public class Notification implements Serializable{
         this.user = user;
     }
 
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
     @Override
     public String toString() {
         return "Notification{" +
@@ -107,7 +87,6 @@ public class Notification implements Serializable{
                 ", confirmation=" + confirmation +
                 ", argument=" + argument +
                 ", user=" + user +
-                ", profile=" + profile +
                 '}';
     }
 }
