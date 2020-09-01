@@ -24,6 +24,9 @@ public class InfosCard implements Serializable {
     @Column(name="typeProduit", nullable=false)
     private String typeProduit;
     
+    @Column(name="codeProduit", nullable=false)
+    private String codeProduit;
+    
     @Column(name="bin",nullable = false)
     private String bin;
     
@@ -173,6 +176,9 @@ public class InfosCard implements Serializable {
 	
 	@Column(name="statut",nullable = true)
     private String statut;
+	
+	@Column(name="etat",nullable = true)
+    private String etat; 
 	
 	@Column(name="commentaire",nullable = true)
     private String commentaire;
@@ -632,6 +638,22 @@ public class InfosCard implements Serializable {
 
 	public void setStatut(String statut) {
 		this.statut = statut;
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+	public String getCodeProduit() {
+		return codeProduit;
+	}
+
+	public void setCodeProduit(String codeProduit) {
+		this.codeProduit = codeProduit;
 	}
 
 	public Client getClient() {

@@ -24,6 +24,15 @@ public class InfosCardService {
     	card.setStatut("En cours");
         return repository.save(card);
     }
+    
+    public List<InfosCard> getInfosCardsByBin(String bin){
+    	return repository.findByBin(bin);
+    }
+
+    
+    public InfosCard getInfosCardsByCodeProduit(String codeProduit){
+    	return repository.findByCodeProduit(codeProduit);
+    }
 
     public Optional<InfosCard> getInfosCardById(long id){
         return repository.findById(id);
@@ -41,6 +50,14 @@ public class InfosCardService {
     	InfosCard infosCard=repository.findById(id)
     			.orElseThrow(() -> new ResourceNotFoundException("InfosCard not found for this id :: " + id));
     	repository.delete(infosCard);
+    }
+    
+    public InfosCard updateCardByStatutAndClient(String statut, Long idClient, Long id) {
+    	return repository.updateCardByStatutAndClient(statut, idClient, id);
+    }
+    
+    public InfosCard updateCardByEtat(String etat, Long id) {
+    	return repository.updateCardByEtat(etat, id);
     }
     
     public InfosCard update(Long id,InfosCard card) throws ResourceNotFoundException {
@@ -102,6 +119,9 @@ public class InfosCardService {
 		infosCard.setTypeImpRecto(card.getTypeImpRecto());
 		infosCard.setTypeProduit(card.getTypeProduit());
 		infosCard.setTypePuce(card.getTypePuce());
+		infosCard.setStatut(card.getStatut());
+		infosCard.setCodeProduit(card.getCodeProduit());
+		infosCard.setEtat(card.getEtat());
 		infosCard.setUser(card.getUser());
 		InfosCard updatedInfosCard = repository.save(infosCard);
     	return updatedInfosCard;

@@ -1,5 +1,6 @@
 package com.s2m.card.security;
 
+import com.s2m.card.models.ERole;
 import com.s2m.card.security.jwt.AuthEntryPointJwt;
 import com.s2m.card.security.jwt.AuthTokenFilter;
 import com.s2m.card.security.services.UserDetailsServiceImpl;
@@ -55,12 +56,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable()
-			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
-			.antMatchers("/api/test/**").permitAll()
-			.anyRequest().authenticated();
+		 http.cors().and().csrf().disable()
+		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		.authorizeRequests().antMatchers("/api/auth/**").permitAll()
+		.antMatchers("/api/infoscards").hasAnyAuthority( "ROLE_CHEF_PROJET", "ROLE_ADMIN")
+		.antMatchers("/api/infoscards").permitAll()
+		.antMatchers("/api/test/**").permitAll()
+		.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
